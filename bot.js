@@ -82,10 +82,12 @@ const actions = {
     context.balance = 'your account balance is $1000;';
     cb(context);
   },['get-username'](context, entities, cb) {
-	    const username = firstEntityValue(entities, 'username');
+	    //const username = firstEntityValue(entities, 'username');
 		
 		//console.log(user);
+    		console.log('facebookId: '+ context._fbid_);
     
+	
 		context.username  = 'Mohsin';
 	
 
