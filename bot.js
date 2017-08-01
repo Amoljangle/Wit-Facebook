@@ -34,6 +34,18 @@ const actions = {
     const recipientId = context._fbid_;
     console.log('context._fbid_: '+context._fbid_);
     if (recipientId) {
+	    
+	    
+	    console.log("quickreplies: "+response.quickreplies);
+		if(response.quickreplies) { // Wit.ai wants us to include quickreplies, alright!
+		response.quick_replies = [];
+		for(var i = 0, len = response.quickreplies.length; i < len; i++) { // Loop through quickreplies
+		response.quick_replies.push({ title: response.quickreplies[i], content_type: 'text', payload: 'CUSTOM_TEXT' });
+		}
+		delete response.quickreplies;
+		} 
+	    
+	    
       // Yay, we found our recipient!
       // Let's forward our bot response to her.
       FB.fbMessage(recipientId, message, (err, data) => {
